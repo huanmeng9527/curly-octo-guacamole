@@ -1,0 +1,6 @@
+游戏基本设置与全局变量：定义了游戏启动状态is_game_started、运行状态running等布尔变量，以及玩家动画相关的变量，如当前动画索引idx_current_anim、动画数量PLAYER_ANIM_NUM，还设定了玩家的尺寸、速度，阴影宽度等常量。
+按钮类设计：创建Button类用于管理游戏中的按钮，通过enum定义按钮的不同状态（Idle、Hovered、Pushed）。Button类的成员函数Draw根据按钮状态绘制相应图片，ProcessEvent处理鼠标事件，CheckCursorHit检测鼠标是否在按钮区域内。StartGameButton和QuitGameButton类继承自Button类，分别实现启动游戏和退出游戏的功能。
+子弹类设计：Bullet类表示游戏中的子弹，包含子弹的位置信息和绘制函数Draw，用于在指定位置绘制子弹图形。
+敌人类设计：EMERGY类代表游戏中的敌人，包含敌人的图像、速度、尺寸、位置、存活状态等成员变量。敌人在随机边缘生成，Move函数使其向玩家位置移动，CheckPlayerCollision和CheckBulletCollision分别检测与玩家和子弹的碰撞，Hurt函数标记敌人被击中，CheckAlive判断敌人是否存活。
+游戏功能实现：TryGenerateEnemy函数按照一定间隔生成敌人并添加到敌人列表；UpdateBullets函数根据时间和玩家位置更新子弹位置；DrawPlayerScore函数在屏幕上绘制玩家得分。
+主函数与游戏循环：在main函数中，初始化图形界面，创建敌人列表和子弹列表，加载各种游戏资源（如菜单、背景、玩家和阴影图片等）。在游戏循环中，处理键盘事件以控制玩家移动，进行敌人生成、移动、碰撞检测，根据游戏状态绘制游戏画面，并通过Sleep函数控制游戏帧率。
